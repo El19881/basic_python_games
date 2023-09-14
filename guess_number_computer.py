@@ -2,7 +2,7 @@ import random
 
 print("Welcome to the 'Guess the number!' game!\nIf your guess will be wrong, we will provide you hints, let's see how many tries you need!")
 
-number = random.randrange(1,2)
+number = random.randrange(1,2) #adjust the range of the numbers before the game
 tries = 0
 
 def main_loop():
