@@ -1,22 +1,30 @@
-#add counter for tries
-#add counter to responses
-#add error handling when value provided is not integer
-
 import random
 
-print("Welcome to the 'Guess the number!' game! If your guess will be wrong, we will provide you hints, let's see how many tries you need!")
+print("Welcome to the 'Guess the number!' game!\nIf your guess will be wrong, we will provide you hints, let's see how many tries you need!")
 
-number = random.randrange(0,10)
+number = random.randrange(1,2)
+tries = 0
 
-user_try = int(input("Provide a number: "))
-
-while number != user_try:
-	if number > user_try:
-		print("Your number is too small!")
+def main_loop():
+	global tries
+	try:
 		user_try = int(input("Provide a number: "))
-	elif number < user_try:
-		print("Your number is too high!")
-		user_try = int(input("Provide a number: "))
+		tries += 1
+		while number != user_try:
+			if number > user_try:
+				print("Your number is too small!")
+				user_try = int(input("Provide a number: "))
+				tries += 1
+			elif number < user_try:
+				print("Your number is too high!")
+				user_try = int(input("Provide a number: "))
+				tries +=1
+	except:
+		print("You did not provide a number. Please provide a valid number")
+		#tries += 1 if you would like to count non integer attempts as well
+		return main_loop()
+	
+	if number == user_try:
+		print(f"You won! Congratulations! You needed {tries} attempt(s) to guess the number!")
 
-if number == user_try:
-	print("You won! Congratulations!")
+main_loop()
