@@ -12,8 +12,9 @@
 def hangman():
 	guess_word_input = input("Please provide the word the player will need to guess: ")
 	word_letters = set(guess_word_input) #letters in the word to guess
+	word = guess_word_input
 	provided_letters = set() #letters user has used as guesses
-	letters = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z']
+	letters = set(['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z'])
 	hangman_status = 0
 	hangman = [
 """
@@ -151,11 +152,11 @@ def hangman():
 
 	
 	#getting user input
-	while len(word_letters) > 0 and hangman status != 10:
+	while len(word_letters) > 0 and hangman_status != 11:
 		#letters used
-		print("You have used so far: ", ','.join(used_letters))
+		print("You have used so far: ", ','.join(provided_letters))
 		#what is the current status of letters guessed with dashes: W-O-G (WRONG)
-		word_list = [letter if letter in used_letters else "-" for letter in guess_word_input]
+		word_list = [letter if letter in provided_letters else "-" for letter in guess_word_input]
 		print("The word to guess is: ", ' '.join(word_list))
 
 		
@@ -176,14 +177,23 @@ def hangman():
 			print("This is not a valid letter. Please try again.")
 		#	return player_letter
 
-	if hangman_status == 10:
+	if hangman_status == 11:
 		print("You lost!")
 	else:
-		print("You won! You guessed that the word is: ", ' '.join(word_list))
+		print("You won! You guessed that the word is: ", ''.join(word))
+
+	play_again()
+
+
+def play_again():
+	new_game = input("Do you want to play again?: ").upper()
+	if new_game == "Y":
+		return hangman()
+	else:
+		print("Thanks for playing!")
 
 
 hangman()
-
-
+#play_again()
 
 
