@@ -1,5 +1,5 @@
 def hangman():
-	guess_word_input = input("Please provide the word the player will need to guess: ")
+	guess_word_input = input("Please provide the word the player will need to guess: ").lower()
 	word_letters = set(guess_word_input) #letters in the word to guess
 	word = guess_word_input
 	provided_letters = set() #letters user has used as guesses
@@ -148,7 +148,7 @@ def hangman():
 		print("The word to guess is: ", ' '.join(word_list))
 
 		
-		player_guess_letter = input("Please provide a letter: ")
+		player_guess_letter = input("Please provide a letter: ").lower()
 		if player_guess_letter in letters - provided_letters:
 			provided_letters.add(player_guess_letter)
 			if player_guess_letter in word_letters:
